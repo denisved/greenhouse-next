@@ -59,6 +59,22 @@ export const MqttProvider = ({ children }) => {
     }
   };
 
+  const subscribe = (topic, callback) => {
+    if (client && isConnected) {
+      client.subscribe(topic, (err) => {
+        if (!err) {
+          client.on('message', (receivedTopic, message) => {
+            if (receivedTopic === topic) {
+              callback(message.toString());
+            }
+          });
+        }
+      });
+    } else {
+      console.error('MQTT client is not connected');
+    }
+  };
+
   const disconnectFromBroker = () => {
     if (client) {
       client.end();
@@ -71,7 +87,7 @@ export const MqttProvider = ({ children }) => {
   };
 
   return (
-    <MqttContext.Provider value={{ isConnected, connectToBroker, publish, disconnectFromBroker, connectionError }}>
+    <MqttContext.Provider value={{ isConnected, connectToBroker, publish, subscribe, disconnectFromBroker, connectionError }}>
       {children}
     </MqttContext.Provider>
   );
