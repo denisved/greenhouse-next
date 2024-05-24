@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useMqtt } from '../context/mqttContext';
+import axios from 'axios';
 
 export default function EspControl() {
   const { subscribe, publish } = useMqtt();
   const [data, setData] = useState({ humidity: 0, temperature: 0, soil_moisture: 0 });
+  const isSubscribed = useRef(false);
 
   useEffect(() => {
     const handleNewMessage = (message) => {
@@ -13,10 +15,13 @@ export default function EspControl() {
         temperature: parsedMessage.temperature,
         soil_moisture: parsedMessage.soil_moisture,
       });
+      axios.post('/api/saveData', message).catch((err) => console.error('Error saving data:', err));
     };
 
-    if (subscribe) {
+    if (subscribe && !isSubscribed.current) {
       subscribe('esp8266_data', handleNewMessage);
+      isSubscribed.current = true;
+
     }
   }, [subscribe]);
 
@@ -58,4 +63,4 @@ export default function EspControl() {
       </div>
     </div>
   );
-};
+}
