@@ -15,11 +15,11 @@ export default function EspControl() {
   useEffect(() => {
     const handleNewMessage = (message) => {
       const parsedMessage = JSON.parse(message);
-      setData({
-        humidity: parsedMessage.humidity,
-        temperature: parseFloat(parsedMessage.temperature).toFixed(1),
+      setData(prevData => ({
+        humidity: parsedMessage.humidity !== null ? parseFloat(parsedMessage.humidity).toFixed(1) : prevData.humidity,
+        temperature: parsedMessage.temperature !== null ? parseFloat(parsedMessage.temperature).toFixed(1) : prevData.temperature,
         soil_moisture: parsedMessage.soil_moisture,
-      });
+      }));
       axios.post('/api/saveData', message).catch((err) => console.error('Error saving data:', err));
     };
 
@@ -49,7 +49,7 @@ export default function EspControl() {
   });
 
   return (
-    <div className="p-5 max-w-screen-lg mx-auto ">
+    <div className="p-5 max-w-screen-lg mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg">
       <h2 className="text-3xl font-bold mb-6 text-center text-gray-900 dark:text-gray-100">Data monitoring in real time</h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
         <div className="flex flex-col items-center">
