@@ -14,7 +14,7 @@ export default function About() {
         </p>
       </div>
       <div className="flex justify-center mt-9">
-        <img className="w-8/12 h-auto" src="arch.svg" alt="Project Architecture" />
+        <img className="w-full sm:w-4/6 h-auto" src="arch.svg" alt="Project Architecture" />
       </div>
     </div>
   );
