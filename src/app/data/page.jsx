@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default function Data() {
   const [selectedDate, setSelectedDate] = useState('');
-  const [interval, setInterval] = useState('all'); // Інтервал за замовчуванням "всі дані"
+  const [interval, setInterval] = useState('all'); // Default interval "all data"
   const [data, setData] = useState([]);
 
   const handleDateChange = (event) => {
@@ -33,35 +33,51 @@ export default function Data() {
   };
 
   return (
-    <div className="p-5 max-w-screen-md mx-auto">
-      <h2 className="text-2xl font-bold mb-4 text-center">Select Date and Time Interval to Fetch Data</h2>
-      <div className="mb-4 flex flex-col md:flex-row items-center">
-        <input
-          type="date"
-          value={selectedDate}
-          onChange={handleDateChange}
-          className="p-2 border border-gray-300 rounded mb-2 md:mb-0 md:mr-4 w-full md:w-auto"
-        />
-        <select
-          value={interval}
-          onChange={handleIntervalChange}
-          className="p-2 border border-gray-300 rounded mb-2 md:mb-0 md:mr-4 w-full md:w-auto"
-        >
-          <option value="all">All data</option>
-          <option value={1}>1 minute</option>
-          <option value={5}>5 minutes</option>
-          <option value={10}>10 minutes</option>
-          <option value={30}>30 minutes</option>
-          <option value={60}>1 hour</option>
-        </select>
+    <div className="p-5 max-w-screen-xl mx-auto">
+      <h2 className="text-4xl font-bold mb-6 text-left text-green-600">Data Storage</h2>
+      <div className="text-lg text-gray-800 dark:text-gray-200 mb-8 text-left">
+        <p className="mb-4">
+          Use this page to view historical data from the database. Select a date and time interval to fetch and display the data.
+        </p>
+      </div>
+      <div className="flex flex-col items-center p-5 max-w-screen-sm mx-auto">
+        <div className="grid gap-6 mb-6 w-full">
+          <div>
+            <label htmlFor="date" className="block mb-3 text-lg font-medium text-gray-900 dark:text-white">Date</label>
+            <input
+              type="date"
+              id="date"
+              value={selectedDate}
+              onChange={handleDateChange}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="interval" className="block mb-3 text-lg font-medium text-gray-900 dark:text-white">Interval</label>
+            <select
+              id="interval"
+              value={interval}
+              onChange={handleIntervalChange}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option value="all">All data</option>
+              <option value={1}>1 minute</option>
+              <option value={5}>5 minutes</option>
+              <option value={10}>10 minutes</option>
+              <option value={30}>30 minutes</option>
+              <option value={60}>1 hour</option>
+            </select>
+          </div>
+        </div>
         <button
           onClick={fetchData}
-          className="p-2 bg-blue-500 text-white rounded hover:bg-blue-700 w-full md:w-auto"
+          className="transition-transform duration-300 ease-in-out transform hover:scale-105 text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-lg w-full sm:w-auto px-8 py-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
         >
           Fetch Data
         </button>
       </div>
-      <div className="mt-4 overflow-x-auto">
+      <div className="mt-8 overflow-x-auto">
         {data.length > 0 ? (
           <table className="min-w-full bg-white dark:bg-gray-800">
             <thead className="bg-gray-800 text-white dark:bg-gray-300 dark:text-gray-800">
@@ -84,7 +100,7 @@ export default function Data() {
             </tbody>
           </table>
         ) : (
-          <p className="text-center">No data found for the selected date and interval.</p>
+          <p className="text-center mt-4">No data found for the selected date and interval.</p>
         )}
       </div>
     </div>
