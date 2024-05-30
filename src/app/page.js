@@ -5,8 +5,8 @@ import EspControl from '@/components/EspControl';
 
 export default function page() {
   return (
-    <div>
+    <>
       <EspControl />
-    </div>
+    </>
   )
 }
