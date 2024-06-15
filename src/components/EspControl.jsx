@@ -16,11 +16,16 @@ export default function EspControl() {
     const handleNewMessage = (message) => {
       const parsedMessage = JSON.parse(message);
       setData(prevData => ({
-        humidity: parsedMessage.humidity !== null ? parseFloat(parsedMessage.humidity).toFixed(1) : prevData.humidity,
-        temperature: parsedMessage.temperature !== null ? parseFloat(parsedMessage.temperature).toFixed(1) : prevData.temperature,
+        humidity: parsedMessage.humidity !== null ? 
+        parseFloat(parsedMessage.humidity).toFixed(1) : 
+        prevData.humidity,
+        temperature: parsedMessage.temperature !== null ? 
+        parseFloat(parsedMessage.temperature).toFixed(1) : 
+        prevData.temperature,
         soil_moisture: parsedMessage.soil_moisture,
       }));
-      axios.post('/api/saveData', message).catch((err) => console.error('Error saving data:', err));
+      axios.post('/api/saveData', message).catch((err) => 
+        console.error('Error saving data:', err));
     };
 
     if (subscribe && !isSubscribed.current) {
