@@ -37,7 +37,7 @@ export const MqttProvider = ({ children }) => {
       console.error('Connection error: ', err);
       setConnectionError(err.message);
       setIsConnected(false);
-      mqttClient.end(); // Ensure we end the client on error
+      mqttClient.end(); 
       localStorage.removeItem('mqttLogin');
       localStorage.removeItem('mqttPassword');
     });

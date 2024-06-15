@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default function DataStorage() {
   const [selectedDate, setSelectedDate] = useState('');
-  const [interval, setInterval] = useState('all'); // Default interval "all data"
+  const [interval, setInterval] = useState('all'); 
   const [data, setData] = useState([]);
 
   const handleDateChange = (event) => {

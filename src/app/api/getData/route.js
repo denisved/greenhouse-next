@@ -32,7 +32,6 @@ export async function GET(req, res) {
 
     let filteredData = data;
 
-    // Якщо інтервал не "всі дані", то фільтруємо
     if (interval !== 'all') {
       const parsedInterval = parseInt(interval, 10);
       filteredData = [];
