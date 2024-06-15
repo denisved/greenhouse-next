@@ -22,8 +22,8 @@ export default function Connect() {
           for real-time data monitoring and control.
         </p>
         <p className='mb-4'>
-            If you are a random person visiting this app you can use login 'random_user' and password 'random_useR0'. 
-            This credentials will give you the permission type 'subscribe-only' so that you could monitor data from sensors 
+            If you are a random person visiting this app you can use login &apos;random_user&apos; and password &apos;random_useR0&apos;. 
+            This credentials will give you the permission type &apos;subscribe-only&apos; so that you could monitor data from sensors 
             but could not control water pump or change automatic watering level for the system. 
         </p>
       </div>
