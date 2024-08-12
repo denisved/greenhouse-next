@@ -1,7 +1,7 @@
 ## About
 
 This [Next.js](https://nextjs.org/) app is a client part of greenhouse monitoring and control system where [Tailwind CSS](https://tailwindcss.com/) was used to create responsive UI. Hardware part is based 
-on [ESP8266](https://en.wikipedia.org/wiki/ESP8266) and communicate with this app via MQTT broker in real time. [MongoDB](https://www.mongodb.com/) is used to store those data. 
+on [ESP8266](https://en.wikipedia.org/wiki/ESP8266) and communicates with this app via MQTT broker in real time. [MongoDB](https://www.mongodb.com/) is used to store those data. 
 
 This system includes:
 - Automatic irrigation where user can choose threshold 
